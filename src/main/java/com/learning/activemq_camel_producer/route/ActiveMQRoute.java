@@ -10,8 +10,12 @@ public class ActiveMQRoute extends RouteBuilder {
     public void configure() throws Exception {
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method 'configure'");
+        onException(Exception.class)
+                .log("Exception in route: ${exception.message}")
+                .handled(true);
         from("direct:start")
-                .to("activemq:queue:myQueue");
+                .to("activemq:queue:myQueue")
+                .to("mock:myQueue");
     }
 
 }
