@@ -15,7 +15,8 @@ public class ActiveMQRoute extends RouteBuilder {
                 .handled(true);
         from("direct:start")
                 .to("activemq:queue:myQueue")
-                .to("mock:myQueue");
+                .to("mock:myQueue")
+                .to("activemq:topic:myTopic");
     }
 
 }
